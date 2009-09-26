@@ -1,13 +1,13 @@
 Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Name:		libatasmart
-Version:	0.14
+Version:	0.15
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://0pointer.de/public/%{name}-%{version}.tar.gz
-# Source0-md5:	5f8bef94ed2b65748a6e37c059b81042
-BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake >= 1:1.9
+# Source0-md5:	9d3bdd99592a567abcda1c28df73963a
+BuildRequires:	autoconf >= 2.63
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	udev-devel
@@ -46,7 +46,7 @@ Statyczna biblioteka libatasmart.
 
 %build
 %{__libtoolize}
-%{__aclocal} -I m4
+%{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -76,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libatasmart.so
+%{_datadir}/vala/vapi/atasmart.vapi
 %{_libdir}/libatasmart.la
 %{_includedir}/atasmart.h
 %{_pkgconfigdir}/libatasmart.pc
