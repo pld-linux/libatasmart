@@ -1,13 +1,15 @@
 Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
+Summary(pl.UTF-8):	Biblioteka do monitorowania stanu dysku ATA S.M.A.R.T.
 Name:		libatasmart
-Version:	0.16
+Version:	0.17
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://0pointer.de/public/%{name}-%{version}.tar.gz
-# Source0-md5:	165b9b8c228a30b4f9cb10f0e42f7b67
+# Source0-md5:	dc36cadbbb7fa38f8af175713eda1a21
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	udev-devel
@@ -17,11 +19,16 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 A small and lightweight parser library for ATA S.M.A.R.T. hard disk
 health monitoring.
 
+%description -l pl.UTF-8
+Mała i lekka biblioteka analizująca stan dysków twardych ATA z
+systemem S.M.A.R.T.
+
 %package devel
 Summary:	Header files for libatasmart library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libatasmart
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	udev-devel
 
 %description devel
 Header files for libatasmart library.
@@ -41,6 +48,18 @@ Static libatasmart library.
 %description static -l pl.UTF-8
 Statyczna biblioteka libatasmart.
 
+%package -n vala-atasmart
+Summary:	libatasmart API for Vala language
+Summary(pl.UTF-8):	API libatasmart dla języka Vala
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description -n vala-atasmart
+libatasmart API for Vala language.
+
+%description -n vala-atasmart -l pl.UTF-8
+API libatasmart dla języka Vala.
+
 %prep
 %setup -q
 
@@ -50,7 +69,8 @@ Statyczna biblioteka libatasmart.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--disable-silent-rules
 %{__make}
 
 %install
@@ -76,7 +96,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libatasmart.so
-%{_datadir}/vala/vapi/atasmart.vapi
 %{_libdir}/libatasmart.la
 %{_includedir}/atasmart.h
 %{_pkgconfigdir}/libatasmart.pc
@@ -84,3 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libatasmart.a
+
+%files -n vala-atasmart
+%defattr(644,root,root,755)
+%{_datadir}/vala/vapi/atasmart.vapi
