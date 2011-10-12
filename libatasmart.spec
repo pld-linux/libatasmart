@@ -1,18 +1,18 @@
 Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Summary(pl.UTF-8):	Biblioteka do monitorowania stanu dysku ATA S.M.A.R.T.
 Name:		libatasmart
-Version:	0.17
+Version:	0.18
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://0pointer.de/public/%{name}-%{version}.tar.gz
-# Source0-md5:	dc36cadbbb7fa38f8af175713eda1a21
+# Source0-md5:	dc22b7acda1c2230f55ae98737e8b159
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	udev-devel
+BuildRequires:	udev-devel >= 143
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -28,7 +28,7 @@ Summary:	Header files for libatasmart library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libatasmart
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	udev-devel
+Requires:	udev-devel >= 143
 
 %description devel
 Header files for libatasmart library.
@@ -65,7 +65,7 @@ API libatasmart dla języka Vala.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
