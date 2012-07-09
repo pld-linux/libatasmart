@@ -2,7 +2,7 @@ Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Summary(pl.UTF-8):	Biblioteka do monitorowania stanu dysku ATA S.M.A.R.T.
 Name:		libatasmart
 Version:	0.18
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://0pointer.de/public/%{name}-%{version}.tar.gz
