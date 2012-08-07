@@ -1,18 +1,20 @@
 Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Summary(pl.UTF-8):	Biblioteka do monitorowania stanu dysku ATA S.M.A.R.T.
 Name:		libatasmart
-Version:	0.18
-Release:	3
+Version:	0.19
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://0pointer.de/public/%{name}-%{version}.tar.gz
-# Source0-md5:	dc22b7acda1c2230f55ae98737e8b159
-BuildRequires:	autoconf >= 2.63
+Source0:	http://0pointer.de/public/%{name}-%{version}.tar.xz
+# Source0-md5:	53afe2b155c36f658e121fe6def33e77
+BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-devel >= 143
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -70,7 +72,8 @@ API libatasmart dla języka Vala.
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-silent-rules
+	--disable-silent-rules \
+	--enable-static
 %{__make}
 
 %install
@@ -78,6 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libatasmart.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -96,7 +100,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libatasmart.so
-%{_libdir}/libatasmart.la
 %{_includedir}/atasmart.h
 %{_pkgconfigdir}/libatasmart.pc
 
