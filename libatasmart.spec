@@ -7,6 +7,7 @@ License:	LGPL v2+
 Group:		Libraries
 Source0:	http://0pointer.de/public/%{name}-%{version}.tar.xz
 # Source0-md5:	53afe2b155c36f658e121fe6def33e77
+URL:		http://0pointer.de/blog/projects/being-smart.html
 BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	libstdc++-devel
