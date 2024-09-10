@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Summary(pl.UTF-8):	Biblioteka do monitorowania stanu dysku ATA S.M.A.R.T.
 Name:		libatasmart
@@ -13,6 +17,7 @@ BuildRequires:	automake >= 1:1.11
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-devel >= 143
 BuildRequires:	xz
@@ -75,7 +80,7 @@ API libatasmart dla języka Vala.
 %{__automake}
 %configure \
 	--disable-silent-rules \
-	--enable-static
+	%{__enable_disable static_libs static}
 %{__make}
 
 %install
@@ -105,9 +110,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/atasmart.h
 %{_pkgconfigdir}/libatasmart.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libatasmart.a
+%endif
 
 %files -n vala-atasmart
 %defattr(644,root,root,755)
