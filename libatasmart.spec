@@ -6,7 +6,7 @@ Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Summary(pl.UTF-8):	Biblioteka do monitorowania stanu dysku ATA S.M.A.R.T.
 Name:		libatasmart
 Version:	0.19
-Release:	3
+Release:	5
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://0pointer.de/public/%{name}-%{version}.tar.xz
@@ -90,6 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libatasmart.la
+# avoid unpackaged duplicate doc dir; README is packaged from source tree via %%doc
+%{__rm} -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
